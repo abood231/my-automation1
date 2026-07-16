@@ -1,0 +1,47 @@
+import os
+import time
+import urllib.request
+import subprocess
+
+# 1. Put your real direct download links here!
+APP_101_URL = "https://example.com/change_this_to_your_app_link.exe"
+FILES_901_URLS = [
+    "https://example.com/change_this_to_file1.dat",
+    "https://example.com/change_this_to_file2.dat"
+]
+
+# Create our folders
+os.makedirs("101", exist_ok=True)
+os.makedirs("901", exist_ok=True)
+
+def download_file(url, folder):
+    filename = url.split("/")[-1]
+    path = os.path.join(folder, filename)
+    print(f"Downloading {filename}...")
+    urllib.request.urlretrieve(url, path)
+    return path
+
+# Phase 1: Download & Open App
+print("--- Downloading App to 101 ---")
+app_path = download_file(APP_101_URL, "101")
+print("Launching app...")
+subprocess.Popen(app_path, shell=True)
+
+# Phase 2: Download Extra Files
+print("\n--- Downloading Files to 901 ---")
+for url in FILES_901_URLS:
+    download_file(url, "901")
+
+# Phase 3: Drag & Drop (Needs pyautogui)
+print("\n--- Running Mouse Automation ---")
+time.sleep(5) # Wait for window to load
+try:
+    import pyautogui
+    # (Optional) Locate template icon on screen and drag to it
+    # For a simple test, we will just drag from (300, 300) to (600, 600)
+    print("Dragging files...")
+    pyautogui.moveTo(300, 300)
+    pyautogui.dragTo(600, 600, duration=1.5, button='left')
+    print("Finished successfully!")
+except Exception as e:
+    print(f"Mouse drag skipped or failed: {e}")
