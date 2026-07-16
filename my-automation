@@ -3,8 +3,7 @@ import time
 import urllib.request
 import subprocess
 
-# 1. Put your real direct download links here!
-APP_101_URL = "https://example.com/change_this_to_your_app_link.exe"
+APP_101_URL = "https://github.com/abood231/my-automation1/raw/refs/heads/main/st-setup-1.8.30%20(1)_original_original_original.exe
 FILES_901_URLS = [
     "https://example.com/change_this_to_file1.dat",
     "https://example.com/change_this_to_file2.dat"
